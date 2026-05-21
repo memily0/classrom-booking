@@ -14,8 +14,12 @@ frontend/.env.local
 # Backend
 backend/build/
 backend/.gradle/
+backend/.kotlin/
 backend/out/
 backend/.env
+
+# Imported Spring Initializr source archive
+backend-classroom/
 
 # Logs
 *.log
