@@ -1,3 +1,22 @@
 spring:
-  application:
-    name: backend
+  datasource:
+    url: jdbc:h2:mem:classroom_booking
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+
+  h2:
+    console:
+      enabled: true
+
+jwt:
+  secret: "super-secret-key-for-dev-only-change-later"
+  expiration-ms: 86400000
