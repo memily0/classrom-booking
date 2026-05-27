@@ -24,6 +24,11 @@ class RoomEntity(
 
     val description: String? = null,
 
+    @Column(name = "building_name")
+    val buildingName: String? = null,
+
+    val floor: Int? = null,
+
     @Column(name = "is_active", nullable = false)
     val isActive: Boolean = true
 )

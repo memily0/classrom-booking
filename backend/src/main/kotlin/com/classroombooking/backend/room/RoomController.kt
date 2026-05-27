@@ -1,5 +1,6 @@
 package com.classroombooking.backend.room
 
+import com.classroombooking.backend.common.BadRequestException
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -22,11 +23,25 @@ class RoomController(
 
     @GetMapping("/availability")
     fun getRoomsAvailability(
-        @RequestParam
+        @RequestParam(required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        datetime: LocalDateTime
+        datetime: LocalDateTime?,
+        @RequestParam(required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        start: LocalDateTime?,
+        @RequestParam(required = false)
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+        end: LocalDateTime?
     ): List<RoomAvailabilityResponse> {
-        return roomService.getRoomsAvailability(datetime)
+        if (start != null && end != null) {
+            return roomService.getRoomsAvailability(start, end)
+        }
+
+        if (datetime != null && start == null && end == null) {
+            return roomService.getRoomsAvailability(datetime)
+        }
+
+        throw BadRequestException("Provide either datetime or both start and end")
     }
 
     @GetMapping("/{roomId}/schedule")
