@@ -6,5 +6,7 @@ data class RoomResponse(
     val name: String?,
     val capacity: Int?,
     val description: String?,
+    val buildingName: String?,
+    val floor: Int?,
     val isActive: Boolean
 )

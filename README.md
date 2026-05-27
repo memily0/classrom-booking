@@ -38,12 +38,48 @@ npm install
 npm run dev
 ```
 
-## Run Backend
+## Run backend locally
 
 ```bash
 cd backend
 chmod +x ./gradlew
 ./gradlew bootRun
+```
+
+## Run with Docker
+
+```bash
+docker compose up --build
+```
+
+Swagger:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+## Backend API notes
+
+Room responses include location fields for frontend filters:
+
+```text
+buildingName
+floor
+```
+
+Availability supports both point-in-time and interval checks:
+
+```text
+GET /api/rooms/availability?datetime=2026-05-21T14:00:00
+GET /api/rooms/availability?start=2026-05-21T12:00:00&end=2026-05-21T13:00:00
+```
+
+Each availability item also contains a `schedule` object for the selected date.
+
+For local development, backend CORS allows the Vite frontend origin:
+
+```text
+http://localhost:5173
 ```
 
 ## Build

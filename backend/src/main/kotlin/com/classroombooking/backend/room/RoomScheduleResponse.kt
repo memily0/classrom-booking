@@ -16,7 +16,9 @@ data class RoomDetailsResponse(
     val number: String,
     val name: String?,
     val capacity: Int?,
-    val description: String?
+    val description: String?,
+    val buildingName: String?,
+    val floor: Int?
 )
 
 data class WorkingHoursResponse(
